@@ -1,0 +1,54 @@
+<div class="row">
+	<div class="col-xs-12">
+		<h1 class="page-header">
+			Alunos
+			<a class="btn btn-outline btn-primary" title="Adicionar Aluno" ui-sref="alunosAdicionar">
+				<i class="fa fa-user-plus" aria-hidden="true"></i>
+			</a>
+			<div class="header-search">
+				<input type="text" name="search" class="form-control" placeholder="Buscar" ng-model="$scope.search.Nome">
+			</div>
+			<!--header-search-->
+		</h1>
+	</div>
+	<!--col-xs-12-->
+</div>
+<!--row-->
+
+<div class="row">
+	<div class="col-xs-12">
+		<section class="table-responsive">
+			<table class="table table-striped alunos-lista">
+				<tbody>
+					<tr ng-repeat="aluno in alunos.listaAlunos | filter:$scope.search | orderBy: 'Nome'" ng-click="alunos.GoToAluno(aluno.Id)">
+						<td>
+							<div ng-if="aluno.LinkFoto" class="img-thumbnail img-circle thumbnail-box" ng-style="{'background-image':'url({{aluno.LinkFoto}})'}"></div>
+
+							<div ng-if="!aluno.LinkFoto" class="thumbnail-user img-thumbnail img-circle">
+								<i class="fa fa-user" aria-hidden="true"></i>
+							</div>
+						</td>
+						<td>
+							<h3>{{aluno.Nome}}</h3>
+						</td>
+						<td>
+							<h3>{{aluno.TelefoneResponsavelEmergencia}}</h3>
+						</td>
+						<td>
+							<button type="button" class="btn btn-success btn-circle btn-lg" ng-if="aluno.RestricoesAlimentares" title="Restrição Alimentar">
+								<i class="fa fa-cutlery" aria-hidden="true"></i>
+							</button>
+
+							<button type="button" class="btn btn-info btn-circle btn-lg" ng-if="aluno.InformacoesMedicas" title="Informações Médicas">
+								<i class="fa fa-stethoscope" aria-hidden="true"></i>
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</section>
+		<!--table-responsive-->
+	</div>
+	<!--col-xs-12-->
+</div>
+<!--row-->

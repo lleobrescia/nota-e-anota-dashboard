@@ -1,0 +1,72 @@
+<div class="row">
+  <div class="col-xs-12">
+    <h1 class="page-header">
+      Usuários
+      <a class="btn btn-outline btn-primary" title="Adicionar Usuário" ui-sref="usuarioAdicionar">
+        <i class="fa fa-user-plus" aria-hidden="true"></i>
+      </a>
+      <button class="btn btn-outline btn-danger" type="button" ng-click="usuarios.DeleteUsuario()" title="Apagar Usuário(s)" ng-show="usuarios.usuariosSelecionados.length > 0">
+					<i class="fa fa-user-times" aria-hidden="true"></i>
+      </button>
+      <div class="header-search">
+        <input type="text" name="search" class="form-control" placeholder="Buscar" ng-model="$scope.search.Nome">
+      </div>
+      <!--header-search-->
+    </h1>
+  </div>
+  <!--col-xs-12-->
+</div>
+<!--row-->
+
+<div class="row">
+  <div class="col-xs-12">
+    <section class="table-responsive">
+      <table class="table table-striped">
+        <tbody>
+          <thead>
+            <tr>
+              <th>
+                <p ng-click="usuarios.ListManagerService.ToggleAll(usuarios.usuariosSelecionados,usuarios.listUsuarios)" style="cursor: pointer;">
+                  <i class="fa" ng-class="
+                 {  'fa-square-o' : usuarios.usuariosSelecionados.length === 0,
+                   'fa-minus-square-o' : usuarios.ListManagerService.IsIndeterminate(usuarios.usuariosSelecionados,usuarios.listUsuarios),
+                   'fa-check-square-o' : usuarios.usuariosSelecionados.length === usuarios.listUsuarios.length}
+                  "></i>
+                </p>
+              </th>
+              <th>
+                <p>Nome</p>
+              </th>
+              <th>
+                <p>E-mail</p>
+              </th>
+              <th>
+                <p>Cargo</p>
+              </th>
+            </tr>
+          </thead>
+          <tr ng-repeat="usuario in usuarios.listUsuarios | filter:$scope.search | orderBy: 'Nome'">
+            <td style="cursor: pointer;" ng-click="usuarios.ListManagerService.Toggle(usuario,usuarios.usuariosSelecionados)">
+              <p>
+                <i class="fa" ng-class="usuarios.ListManagerService.Exists(usuario,usuarios.usuariosSelecionados) ? 'fa-check-square-o' : 'fa-square-o'"
+                  aria-hidden="true"></i>
+              </p>
+            </td>
+            <td>
+              <a ng-bind="usuario.Nome" title="Editar" ui-sref="usuarioDetails( { idUsuario: usuario.Id })" style="cursor: pointer;"></a>
+            </td>
+            <td>
+              <p ng-bind="usuario.Email"></p>
+            </td>
+            <td>
+              <p ng-bind="usuarios.GetCargo(usuario.IdGrupoUsuario)"></p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    <!--table-responsive-->
+  </div>
+  <!--col-xs-12-->
+</div>
+<!--row-->

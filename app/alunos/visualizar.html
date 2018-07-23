@@ -1,0 +1,455 @@
+<section class="row aluno-hearder">
+	<div class="col-xs-12">
+		<div class="form-group input-group input-title">
+			<label><a ui-sref="alunos" rel="prev" title="Voltar">Alunos</a></label>
+			<h1 class="page-header" ng-bind="aluno.dado.Nome"></h1>
+			<span class="input-group-btn">
+				<button class="btn btn-outline btn-primary" type="button" ng-click="aluno.edition = true" title="Editar Informações">
+					<i class="fa fa-pencil" aria-hidden="true"></i>
+				</button>
+			</span>
+		</div>
+		<!--form-group-->
+	</div>
+	<!--col xs 12-->
+</section>
+<!--row-->
+
+<section class="row">
+	<div class="col-xs-12 text-center">
+		<div ng-if="aluno.dado.LinkFoto" class="img-thumbnail img-circle thumbnail-box thumbnail-box-lg" ng-style="{'background-image':'url({{aluno.dado.LinkFoto}})'}"></div>
+		<div ng-if="!aluno.dado.LinkFoto" class="thumbnail-user thumbnail-user-lg  img-thumbnail img-circle center-block">
+			<i class="fa fa-user" aria-hidden="true"></i>
+		</div>
+	</div>
+	<!--col-xs-12-->
+</section>
+<!--row-->
+
+<section class="row">
+	<div class="col-xs-12">
+		<h2 class="page-header">
+			Dados da matrícula
+		</h2>
+	</div>
+	<!--col-xs-12-->
+
+	<div class="col-sm-4">
+		<div class="form-group">
+			<label for="nascimento">Matrícula</label>
+			<p class="form-control-static" ng-bind="aluno.dado.Matricula"></p>
+		</div>
+		<!--form-group-->
+	</div>
+	<!--col-sm-4-->
+	<div class="col-sm-4">
+		<div class="form-group">
+			<label for="nascimento">Data de Nascimento</label>
+			<p class="form-control-static" ng-bind="aluno.dado.Data_Nascimento"></p>
+		</div>
+		<!--form-group-->
+	</div>
+	<!--col-sm-4-->
+	<div class="col-sm-4">
+		<div class="form-group">
+			<label for="nascimento">Gênero</label>
+			<p class="form-control-static" ng-if="aluno.dado.Sexo == 'M'">Masculino</p>
+			<p class="form-control-static" ng-if="aluno.dado.Sexo == 'F'">Feminino</p>
+		</div>
+		<!--form-group-->
+	</div>
+	<!--col-sm-4-->
+</section>
+<!--row-->
+
+<section class="row" ng-if="aluno.dado.Endereco">
+	<div class="col-xs-12">
+		<h2 class="page-header">
+			Endereço
+		</h2>
+	</div>
+	<!--col-xs-12-->
+	<div class="col-sm-4">
+		<div class="form-group">
+			<label for="nascimento">CEP</label>
+			<p class="form-control-static" ng-bind="aluno.dado.Cep"></p>
+		</div>
+		<!--form-group-->
+	</div>
+	<!--col-sm-4-->
+	<div class="col-sm-6">
+		<div class="form-group">
+			<label for="nascimento">Logradouro</label>
+			<p class="form-control-static" ng-bind="aluno.dado.Endereco"></p>
+		</div>
+		<!--form-group-->
+	</div>
+	<!--col-sm-4-->
+	<div class="col-sm-2">
+		<div class="form-group">
+			<label for="nascimento">Número</label>
+			<p class="form-control-static" ng-bind="aluno.dado.Numero"></p>
+		</div>
+		<!--form-group-->
+	</div>
+	<!--col-sm-4-->
+
+	<div class="col-sm-4">
+		<div class="form-group">
+			<label for="nascimento">Bairro</label>
+			<p class="form-control-static" ng-bind="aluno.dado.Bairro"></p>
+		</div>
+		<!--form-group-->
+	</div>
+	<!--col-sm-4-->
+	<div class="col-sm-4">
+		<div class="form-group">
+			<label for="nascimento">Cidade</label>
+			<p class="form-control-static" ng-bind="aluno.dado.Cidade"></p>
+		</div>
+		<!--form-group-->
+	</div>
+	<!--col-sm-4-->
+	<div class="col-sm-4">
+		<div class="form-group">
+			<label for="nascimento">Estado</label>
+			<p class="form-control-static" ng-bind="aluno.dado.Estado"></p>
+		</div>
+		<!--form-group-->
+	</div>
+	<!--col-sm-4-->
+</section>
+<!--row-->
+
+<section class="row" ng-if="aluno.dado.NomeResponsavel1">
+	<div class="col-xs-12">
+		<h2 class="page-header">
+			Responsável
+		</h2>
+	</div>
+	<!--col-xs-12-->
+	<div class="col-sm-8">
+		<div class="form-group">
+			<label for="nascimento">Nome</label>
+			<p class="form-control-static" ng-bind="aluno.dado.NomeResponsavel1"></p>
+		</div>
+		<!--form-group-->
+	</div>
+	<!--col-sm-8-->
+	<div class="col-sm-4">
+		<div class="form-group">
+			<label for="nascimento">Filiação</label>
+			<p class="form-control-static" ng-bind="aluno.dado.Afiliacao_Resp1"></p>
+		</div>
+		<!--form-group-->
+	</div>
+	<!--col-sm-4-->
+
+	<div class="col-sm-4" ng-if="aluno.dado.Telefone_Resp1">
+		<div class="form-group">
+			<label for="nascimento">Telefone</label>
+			<p class="form-control-static" ng-bind="aluno.dado.Telefone_Resp1"></p>
+		</div>
+		<!--form-group-->
+	</div>
+	<!--col-sm-4-->
+	<div class="col-sm-4" ng-if="aluno.dado.Celular_Resp1">
+		<div class="form-group">
+			<label for="nascimento">Celular</label>
+			<p class="form-control-static" ng-bind="aluno.dado.Celular_Resp1"></p>
+		</div>
+		<!--form-group-->
+	</div>
+	<!--col-sm-4-->
+	<div class="col-sm-4">
+		<div class="form-group">
+			<label for="nascimento">E-mail</label>
+			<p class="form-control-static" ng-bind="aluno.dado.Email_Responsavel"></p>
+		</div>
+		<!--form-group-->
+	</div>
+	<!--col-sm-4-->
+</section>
+<!--row-->
+
+<section class="row" ng-if="aluno.dado.NomeResponsavel2">
+	<div class="col-xs-12">
+		<h2 class="page-header">
+			Responsável
+		</h2>
+	</div>
+	<!--col-xs-12-->
+	<div class="col-sm-8">
+		<div class="form-group">
+			<label for="nascimento">Nome</label>
+			<p class="form-control-static" ng-bind="aluno.dado.NomeResponsavel2"></p>
+		</div>
+		<!--form-group-->
+	</div>
+	<!--col-sm-8-->
+	<div class="col-sm-4">
+		<div class="form-group">
+			<label for="nascimento">Filiação</label>
+			<p class="form-control-static" ng-bind="aluno.dado.Afiliacao_Resp2"></p>
+		</div>
+		<!--form-group-->
+	</div>
+	<!--col-sm-4-->
+
+	<div class="col-sm-4" ng-if="aluno.dado.Telefone_Resp1">
+		<div class="form-group">
+			<label for="nascimento">Telefone</label>
+			<p class="form-control-static" ng-bind="aluno.dado.Telefone_Resp2"></p>
+		</div>
+		<!--form-group-->
+	</div>
+	<!--col-sm-4-->
+	<div class="col-sm-4" ng-if="aluno.dado.Celular_Resp1">
+		<div class="form-group">
+			<label for="nascimento">Celular</label>
+			<p class="form-control-static" ng-bind="aluno.dado.Celular_Resp2"></p>
+		</div>
+		<!--form-group-->
+	</div>
+	<!--col-sm-4-->
+	<div class="col-sm-4">
+		<div class="form-group">
+			<label for="nascimento">E-mail</label>
+			<p class="form-control-static" ng-bind="aluno.dado.Email_Responsavel"></p>
+		</div>
+		<!--form-group-->
+	</div>
+	<!--col-sm-4-->
+</section>
+<!--row-->
+
+<section class="row" ng-if="aluno.dado.RestricoesAlimentares || aluno.dado.InformacoesMedicas">
+	<div class="col-xs-12">
+		<h2 class="page-header">
+			Restrições
+		</h2>
+
+		<div class="form-group" ng-if="aluno.dado.RestricoesAlimentares">
+			<label for="nascimento">
+				<i class="fa fa-cutlery" aria-hidden="true" style="font-size: 1.4em;margin-right: 5px;"></i>
+				Restrição Alimentar
+			</label>
+			<p class="form-control-static" ng-bind="aluno.dado.RestricoesAlimentares"></p>
+		</div>
+		<!--form-group-->
+
+		<div class="form-group" ng-if="aluno.dado.InformacoesMedicas">
+			<label for="nascimento">
+				<i class="fa fa-stethoscope" aria-hidden="true" style="font-size: 1.4em;margin-right: 5px;"></i> 
+				Informação Médica
+			</label>
+			<p class="form-control-static" ng-bind="aluno.dado.InformacoesMedicas"></p>
+		</div>
+		<!--form-group-->
+	</div>
+	<!--col-xs-12-->
+</section>
+<!--row-->
+
+<section class="row" ng-if="aluno.dado.NomeResponsavelBuscarAluno">
+	<div class="col-xs-12">
+		<h2 class="page-header">
+			Autorização
+		</h2>
+	</div>
+	<!--col-xs-12-->
+
+	<div class="col-sm-4">
+		<div class="form-group">
+			<label for="nascimento">Autorizado(a) a buscar a criança</label>
+			<p class="form-control-static" ng-bind="aluno.dado.NomeResponsavelBuscarAluno"></p>
+		</div>
+		<!--form-group-->
+	</div>
+	<!--col-sm-4-->
+	<div class="col-sm-2">
+		<div class="form-group">
+			<label for="nascimento">Parentesco</label>
+			<p class="form-control-static" ng-bind="aluno.dado.AfiliacaoResponsavelBuscarAluno"></p>
+		</div>
+		<!--form-group-->
+	</div>
+	<div class="col-sm-3" ng-if="aluno.dado.TelefoneResponsavelBuscarAluno">
+		<div class="form-group">
+			<label for="nascimento">Telefone</label>
+			<p class="form-control-static" ng-bind="aluno.dado.TelefoneResponsavelBuscarAluno"></p>
+		</div>
+		<!--form-group-->
+	</div>
+	<!--col-sm-3-->
+	<div class="col-sm-3" ng-if="aluno.dado.CelularResponsavelBuscarAluno">
+		<div class="form-group">
+			<label for="nascimento">Celular</label>
+			<p class="form-control-static" ng-bind="aluno.dado.CelularResponsavelBuscarAluno"></p>
+		</div>
+		<!--form-group-->
+	</div>
+	<!--col-sm-3-->
+</section>
+<!--row-->
+
+<section class="row" ng-if="aluno.dado.NomeResponsavelEmergencia">
+	<div class="col-xs-12">
+		<h2 class="page-header">
+			Emergência
+		</h2>
+	</div>
+	<!--col-xs-12-->
+	<div class="col-sm-4">
+		<div class="form-group">
+			<label for="nascimento">Contato</label>
+			<p class="form-control-static" ng-bind="aluno.dado.NomeResponsavelEmergencia"></p>
+		</div>
+		<!--form-group-->
+	</div>
+	<!--col-sm-4-->
+	<div class="col-sm-2">
+		<div class="form-group">
+			<label for="nascimento">Parentesco</label>
+			<p class="form-control-static" ng-bind="aluno.dado.AfiliacaoResponsavelEmergencia"></p>
+		</div>
+		<!--form-group-->
+	</div>
+	<div class="col-sm-3" ng-if="aluno.dado.TelefoneResponsavelEmergencia">
+		<div class="form-group">
+			<label for="nascimento">Telefone</label>
+			<p class="form-control-static" ng-bind="aluno.dado.TelefoneResponsavelEmergencia"></p>
+		</div>
+		<!--form-group-->
+	</div>
+	<!--col-sm-3-->
+	<div class="col-sm-3" ng-if="aluno.dado.CelularResponsavelEmergencia">
+		<div class="form-group">
+			<label for="nascimento">Celular</label>
+			<p class="form-control-static" ng-bind="aluno.dado.CelularResponsavelEmergencia"></p>
+		</div>
+		<!--form-group-->
+	</div>
+	<!--col-sm-3-->
+</section>
+<!--row-->
+
+<section class="row" ng-if="aluno.parecer .length > 0">
+	<div class="col-xs-12">
+
+		<h2 class="page-header">
+			Parecer Descritivo
+		</h2>
+
+		<table class="table table-striped">
+			<tbody>
+				<tr ng-repeat="parecer in aluno.parecer" style="vertical-align: middle;cursor:pointer">
+					<td ng-init="parecer.isCollapsed = true" ng-click="parecer.isCollapsed = ! parecer.isCollapsed">
+						<h5><strong ng-bind="parecer.Data"></strong></h5>
+						<p ng-if="parecer.isCollapsed">
+							{{parecer.Parecer | limitTo:150}} <span ng-if="parecer.Parecer.length > 150"> [...]</span>
+						</p>
+						<div uib-collapse="parecer.isCollapsed" style="padding: 5px;margin: 13px 0px;">
+							<p style="margin-bottom:0" ng-bind="parecer.Parecer"></p>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</section>
+
+
+<section class="row">
+	<div class="col-xs-12">
+
+		<h2 class="page-header">
+			Avaliações Pedagógica
+		</h2>
+
+		<table class="table table-striped">
+			<tbody>
+				<thead>
+					<tr>
+						<th ng-click="aluno.SortByService.SortBy('Nome')" style="cursor:pointer">
+							<p>
+								Avaliação
+								<i class="fa" ng-class="
+                 {  'fa-sort' : aluno.SortByService.propertyName != 'Nome',
+                   'fa-sort-desc' : aluno.SortByService.propertyName === 'Nome' && aluno.SortByService.reverse,
+                   'fa-sort-asc' : aluno.SortByService.propertyName === 'Nome' && !aluno.SortByService.reverse}
+                  "></i>
+							</p>
+						</th>
+						<th ng-click="aluno.SortByService.SortBy('Data')" style="cursor:pointer">
+							<p>
+								Data
+								<i class="fa" ng-class="
+                 {  'fa-sort' : aluno.SortByService.propertyName != 'Data',
+                   'fa-sort-desc' : aluno.SortByService.propertyName === 'Data' && aluno.SortByService.reverse,
+                   'fa-sort-asc' : aluno.SortByService.propertyName === 'Data' && !aluno.SortByService.reverse}
+                  "></i>
+							</p>
+						</th>
+					</tr>
+				</thead>
+				<tr ng-repeat="avaliacao in aluno.avaliacoes | orderBy: aluno.SortByService.propertyName : aluno.SortByService.reverse" style="vertical-align: middle;cursor: pointer;"
+					ng-click="aluno.MountChart(avaliacao.Resultado_Avaliacao)">
+					<td>
+						<p style="margin-bottom:0" ng-bind="avaliacao.Nome"></p>
+					</td>
+					<td>
+						<p ng-bind="avaliacao.Data "></p>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</section>
+
+<div class="row" ng-if="aluno.graficos.length > 0">
+	<div class="col-xs-12">
+		<h5>Legenda</h5>
+		<div class="legenda">
+			<ul>
+				<li>
+					<div class="cor" style="background: green;"></div>
+					<p>Alcançado</p>
+				</li>
+				<li>
+					<div class="cor" style="background: yellow;"></div>
+					<p>Em processo</p>
+				</li>
+				<li>
+					<div class="cor" style="background: blue;"></div>
+					<p>Acima do esperado</p>
+				</li>
+				<li>
+					<div class="cor" style="background: magenta;"></div>
+					<p>Não Alcançado</p>
+				</li>
+				<li>
+					<div class="cor" style="background: red;"></div>
+					<p>Não avaliado</p>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<section class="row graficos" ng-repeat="grafico in aluno.graficos">
+	<div class="col-xs-12">
+		<h3 ng-bind="grafico.nome" class="text-center"></h3>
+	</div>
+	<div class="col-md-6">
+		<canvas class="chart chart-radar" chart-data="grafico.data" chart-labels="grafico.labels" chart-dataset-override="grafico.dataset"
+			chart-options="grafico.options">
+		</canvas>
+	</div>
+	<div class="col-md-6">
+		<div ng-repeat="(key, value) in grafico.descricao" class="desc-box">
+			<h5><strong ng-bind="grafico.labels[{{key}}]"></strong> <small ng-bind="'( ' + grafico.respostas[{{key}}] + ' )' "></small></h5>
+			<p ng-bind="value"></p>
+		</div>
+	</div>
+</section>

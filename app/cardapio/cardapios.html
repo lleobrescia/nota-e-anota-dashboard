@@ -1,0 +1,82 @@
+<div class="row">
+  <div class="col-xs-12">
+    <h1 class="page-header">
+      Cardápio
+      <a class="btn btn-outline btn-primary" title="Adicionar Usuário" ui-sref="cardapioAdicionar">
+        <i class="fa fa-plus" aria-hidden="true"></i>
+      </a>
+      <button class="btn btn-outline btn-danger" type="button" ng-click="cardapios.DeleteCardapio()" title="Apagar Cardápio(s)"
+        ng-show="cardapios.cardapiosSelecionados.length > 0">
+					<i class="fa fa-times" aria-hidden="true"></i>
+      </button>
+      <div class="header-search">
+        <input type="text" name="search" class="form-control" placeholder="Buscar" ng-model="$scope.search">
+      </div>
+      <!--header-search-->
+    </h1>
+  </div>
+  <!--col-xs-12-->
+</div>
+<!--row-->
+
+<div class="row">
+  <div class="col-xs-12">
+    <section class="table-responsive table-sorting">
+      <table class="table table-striped">
+        <tbody>
+          <thead>
+            <tr>
+              <th>
+                <p ng-click="cardapios.ListManagerService.ToggleAll(cardapios.cardapiosSelecionados,cardapios.cardapios)" style="cursor: pointer;">
+                  <i class="fa" ng-class="
+                 {  'fa-square-o' : cardapios.cardapiosSelecionados.length === 0,
+                   'fa-minus-square-o' : cardapios.ListManagerService.IsIndeterminate(cardapios.cardapiosSelecionados,cardapios.cardapios),
+                   'fa-check-square-o' : cardapios.cardapiosSelecionados.length === cardapios.cardapios.length}
+                  "></i>
+                </p>
+              </th>
+              <th ng-click="cardapios.SortByService.SortBy('Nome')">
+                <p>
+                  Refeição
+                  <i class="fa" ng-class="
+                 {  'fa-sort' : cardapios.SortByService.propertyName != 'Nome',
+                   'fa-sort-desc' : cardapios.SortByService.propertyName === 'Nome' && cardapios.SortByService.reverse,
+                   'fa-sort-asc' : cardapios.SortByService.propertyName === 'Nome' && !cardapios.SortByService.reverse}
+                  "></i>
+                </p>
+              </th>
+              <th>
+                <select ng-model="$scope.diaFilter" class="form-control" style="border: none;box-shadow: none;">
+                  <option value="">Dia</option>
+                  <option value="Segunda">Segunda</option>
+                  <option value="Terça">Terça</option>
+                  <option value="Quarta">Quarta</option>
+                  <option value="Quinta">Quinta</option>
+                  <option value="Sexta">Sexta</option>
+                  <option value="Sábado">Sábado</option>
+                </select>
+              </th>
+            </tr>
+          </thead>
+          <tr ng-repeat="cardapio in cardapios.cardapios | filter:{'Nome':$scope.search} | filter:{'Dia':$scope.diaFilter} | orderBy: cardapios.SortByService.propertyName : cardapios.SortByService.reverse">
+            <td style="cursor: pointer;" ng-click="cardapios.ListManagerService.Toggle(cardapio,cardapios.cardapiosSelecionados)">
+              <p>
+                <i class="fa" ng-class="cardapios.ListManagerService.Exists(cardapio,cardapios.cardapiosSelecionados) ? 'fa-check-square-o' : 'fa-square-o'"
+                  aria-hidden="true"></i>
+              </p>
+            </td>
+            <td>
+              <a ng-bind="cardapio.Nome" title="Editar" ui-sref="cardapioDetails( { idCardapio: cardapio.Id })" style="cursor: pointer;"></a>
+            </td>
+            <td>
+              <p ng-bind="cardapio.Dia"></p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    <!--table-responsive-->
+  </div>
+  <!--col-xs-12-->
+</div>
+<!--row-->

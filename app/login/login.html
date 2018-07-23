@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-3" style="margin-top:143px">
+    <img src="image/nota-e-anota.png" alt="Nota e Anota" class="img-responsive center-block" style="    max-width: 300px;">
+  </div>
+
+  <div class="col-sm-5 col-md-4 col-sm-offset-4" style="margin-top:50px">
+    <form class="login-box" name="form" ng-submit="login.Validar()">
+      <div class="form-group">
+        <label for="email">E-mail</label>
+        <input type="email" name="email" class="form-control" ng-model="login.dados.Email" required>
+      </div>
+      <!--form-group-->
+      <div class="form-group">
+        <label for="senha">Senha</label>
+        <input type="password" name="senha" class="form-control" ng-model="login.dados.Senha" required>
+      </div>
+      <!--form-group-->
+      <button class="btn btn-outline btn-primary center-block" type="submit" title="Entrar" ng-disabled="form.$invalid">
+        Entrar
+      </button>
+    </form>
+  </div>
+
+  <footer class="text-center" style="position: absolute;bottom: 0;width: 99%;padding-bottom: 20px;">
+    <p>
+      <small>&copy; 2016 - 
+      <a href="http://www.notaeanota.com.br/" title="Nota e Anota">www.notaeanota.com.br</a> -
+       Um produto da <a href="http://pixla.com.br/" target="_blank" title="Pixla">Pixla</a> - Todos os direitos reservados.
+       </small>
+    </p>
+  </footer>
+</div>

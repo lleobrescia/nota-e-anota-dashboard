@@ -1,0 +1,95 @@
+<form name="adicionarForm">
+  <div class="row turma-hearder">
+    <div class="col-xs-12">
+      <div class="form-group input-group input-title">
+        <label><a ui-sref="turmas" rel="prev" title="Voltar">Turmas</a></label>
+        <input type="text" class="form-control" name="nome" placeholder="Nome da Turma" ng-model="turma.dado.Nome" ng-if="!turma.request.ObjectID || turma.edition" required>
+        <h1 class="page-header" ng-bind="turma.dado.Nome" ng-if="turma.request.ObjectID && !turma.edition"></h1>
+
+        <span class="input-group-btn">
+				<button class="btn btn-outline btn-primary" type="button" ng-click="turma.AdicionarTurma()" title="Adicionar Turma" ng-if="!turma.request.ObjectID" ng-disabled="adicionarForm.$invalid">
+					Adicionar
+				</button>
+				<button class="btn btn-outline btn-primary" type="button" ng-click="turma.Atualizar();turma.edition = false" title="Salvar Alterações" ng-if="turma.request.ObjectID && turma.edition" ng-disabled="adicionarForm.$invalid">
+					Salvar
+				</button>
+				<button class="btn btn-outline btn-danger" type="button" ng-click="turma.CancelarEdicao();turma.edition = false" title="Cancelar Alterações" ng-if="turma.request.ObjectID && turma.edition">
+					<i class="fa fa-times" aria-hidden="true"></i>
+				</button>
+        <button class="btn btn-outline btn-primary" type="button" ng-click="turma.edition = true" title="Editar Informações" ng-if="turma.request.ObjectID && !turma.edition">
+					<i class="fa fa-pencil" aria-hidden="true"></i>
+				</button>
+			</span>
+      </div>
+      <!--form-group-->
+    </div>
+    <!--col xs 12-->
+  </div>
+  <!--row-->
+
+
+  <section class="row">
+    <div class="col-sm-4">
+      <div class="form-group">
+        <label for="prof">Professor(a) da Turma</label>
+        <select name="prof" class="form-control" ng-model="turma.profSelecionado" ng-disabled="turma.request.ObjectID" required>
+        <option ng-repeat="professor in turma.professores" value="{{professor.Id}}">{{professor.Nome}}</option>
+      </select>
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <div class="form-group">
+        <label for="ano">Ano</label>
+        <input type="text" name="ano" class="form-control" ng-model="turma.dado.Ano" mask="9999" ng-if="!turma.request.ObjectID || turma.edition" required>
+        <p class="form-control-static" ng-bind="turma.dado.Ano" ng-if="turma.request.ObjectID && !turma.edition"></p>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="form-group">
+        <label for="serie">Série</label>
+        <input type="text" name="serie" class="form-control" ng-model="turma.dado.Serie" ng-if="!turma.request.ObjectID || turma.edition" required>
+        <p class="form-control-static" ng-bind="turma.dado.Serie" ng-if="turma.request.ObjectID && !turma.edition"></p>
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <div class="form-group">
+        <label for="sigla">Sigla</label>
+        <input type="text" name="sigla" class="form-control" ng-model="turma.dado.Sigla" maxlength="2" ng-if="!turma.request.ObjectID || turma.edition" required>
+        <p class="form-control-static" ng-bind="turma.dado.Sigla" ng-if="turma.request.ObjectID && !turma.edition"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="col-sm-6" ng-if="!turma.request.ObjectID || turma.edition">
+      <h3 ng-bind="'Alunos sem Turma ('+ turma.alunos.length + ')'"></h3>
+      <input type="text" class="search form-control" ng-model="$scope.searchAlunos" placeholder="Buscar por nome" style="margin-bottom:23px">
+      <table class="table table-striped">
+        <tbody>
+          <tr ng-repeat="aluno in turma.alunos | filter:turma.FilterAlunos | filter:{Nome:$scope.searchAlunos} | orderBy: 'Nome'" style="cursor: pointer;"
+            ng-click="turma.ListManagerService.Toggle(aluno,turma.alunosSelecionados)">
+            <td>
+              <p ng-bind="aluno.Nome"></p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div ng-class="(!turma.request.ObjectID || turma.edition) ? 'col-sm-6': 'col-sm-12' ">
+      <h3 ng-bind="'Alunos dessa Turma ('+ turma.alunosSelecionados.length + ')'"></h3>
+      <input type="text" class="search form-control" ng-model="$scope.searchSelecionados" placeholder="Buscar por nome" style="margin-bottom:23px">
+      <table class="table table-striped table-seleced-alunos">
+        <tbody>
+          <tr ng-repeat="aluno in turma.alunosSelecionados | filter:{Nome: $scope.searchSelecionados} | orderBy: 'Nome'" ng-style="aluno.disabled ? {cursor: 'not-allowed'} : {cursor: 'pointer'}">
+            <td>
+              <fieldset ng-click="turma.ListManagerService.Toggle(aluno,turma.alunosSelecionados)" ng-disabled="aluno.disabled">
+                <p ng-bind="aluno.Nome"></p>
+              </fieldset>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</form>

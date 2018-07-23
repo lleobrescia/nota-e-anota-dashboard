@@ -1,0 +1,85 @@
+/*CABECALHO*/
+
+.navbar-static-top {
+  z-index: 2
+}
+
+.navbar-default {
+  background-color: white;
+  border-color: #d8d8d8;
+}
+
+.navbar-top-links {
+  margin-right: 0;
+}
+
+.navbar-top-links li {
+  display: inline-block
+}
+
+.navbar-top-links li a {
+  padding: 15px;
+  min-height: 50px;
+  font-size: 1.4em;
+  color: #898989;
+}
+
+.navbar-default {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.navbar-brand {
+  font-size: 2.0em;
+  color: #242424
+}
+
+.sidebar a {
+  font-family: 'Open Sans', sans-serif;
+  color: #239fdb;
+  font-size: 1.4em;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.sidebar .nav {
+  padding-left: 10px;
+}
+
+.sidebar .nav li {
+  margin: 2px 0
+}
+
+.sidebar .nav>li>a:focus, .sidebar .nav>li>a:hover, .sidebar .nav>li>a.active {
+  color: white;
+  background-color: #239fdb;
+  font-weight: 700;
+}
+
+.desenvolvedor {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding-left: 19px;
+  padding-bottom: 27px;
+}
+
+.desenvolvedor a {
+  color: #898989;
+  font-size: 1em;
+  font-family: Open Sans, sans-serif;
+  display: block;
+  text-align: center;
+  margin-top: 42px;
+}
+
+@media (min-width: 768px) {
+  .sidebar {
+    z-index: 1;
+    position: absolute;
+    width: 250px;
+    margin-top: 71px;
+  }
+  .sidebar a {
+    text-align: left;
+  }
+}

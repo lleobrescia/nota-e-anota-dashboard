@@ -1,0 +1,36 @@
+<div class="row">
+	<div class="col-xs-12">
+		<h1 class="page-header">
+			Turmas
+			<a class="btn btn-outline btn-primary" title="Adicionar Turma" ui-sref="turmasAdicionar">
+				<i class="fa fa-user-plus" aria-hidden="true"></i>
+			</a>
+			<div class="header-search">
+				<input type="text" name="search" class="form-control" placeholder="Buscar" ng-model="$scope.search.Nome">
+			</div>
+			<!--header-search-->
+		</h1>
+	</div>
+	<!--col-xs-12-->
+</div>
+<!--row-->
+
+<div class="row">
+	<div class="col-xs-12">
+		<section class="table-responsive">
+			<table class="table table-striped turmas-lista">
+				<tbody>
+					<tr ng-repeat="turma in turmas.listaTurmas | filter:$scope.search | orderBy: ['Nome','Ano']" ng-click="turmas.GoToTurma(turma.Id)"
+						style="cursor:pointer">
+						<td class="text-center">
+							<h3 ng-bind="turma.Nome"></h3>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</section>
+		<!--table-responsive-->
+	</div>
+	<!--col-xs-12-->
+</div>
+<!--row-->

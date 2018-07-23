@@ -1,0 +1,33 @@
+.prof-lista tr {
+  cursor: pointer
+}
+
+.prof-lista td {
+  vertical-align: middle !important;
+  min-height: 90px;
+}
+
+.prof-lista td h3 {
+  margin: 0;
+}
+
+.prof-turmas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 90px;
+}
+
+.prof-turmas p {
+  margin: 0;
+  font-size: 1.2em;
+}
+
+.table.table-striped tbody tr:hover p {
+  color: white !important;
+}
+
+.prof-hearder input {
+  font-size: 2.4em;
+}

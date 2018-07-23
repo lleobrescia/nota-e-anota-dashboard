@@ -1,0 +1,67 @@
+<div class="row">
+  <div class="col-xs-12">
+    <h1 class="page-header">
+      Calendário
+      <a class="btn btn-outline btn-primary" title="Adicionar Item ao Calendário" ui-sref="calendarioAdicionar">
+        <i class="fa fa-plus" aria-hidden="true"></i>
+      </a>
+      <button class="btn btn-outline btn-danger" type="button" ng-click="calendario.Apagar()" title="Apagar Item(ns)"
+        ng-show="calendario.calendarioSelecionados.length > 0">
+					<i class="fa fa-times" aria-hidden="true"></i>
+      </button>
+      <div class="header-search">
+        <input type="text" name="search" class="form-control" placeholder="Buscar" ng-model="$scope.search">
+      </div>
+      <!--header-search-->
+    </h1>
+  </div>
+  <!--col-xs-12-->
+</div>
+<!--row-->
+
+<div class="row">
+  <div class="col-xs-12">
+    <section class="table-responsive">
+      <table class="table table-striped">
+        <tbody>
+          <thead>
+            <tr>
+              <th>
+                <p ng-click="calendario.ListManagerService.ToggleAll(calendario.calendarioSelecionados,calendario.calendario)" style="cursor: pointer;">
+                  <i class="fa" ng-class="
+                 {  'fa-square-o' : calendario.calendarioSelecionados.length === 0,
+                   'fa-minus-square-o' : calendario.ListManagerService.IsIndeterminate(calendario.calendarioSelecionados,calendario.calendario),
+                   'fa-check-square-o' : calendario.calendarioSelecionados.length === calendario.calendario.length}
+                  "></i>
+                </p>
+              </th>
+              <th>
+                <p>Nome</p>
+              </th>
+              <th>
+                <p>Data</p>
+              </th>
+            </tr>
+          </thead>
+          <tr ng-repeat="item in calendario.calendario | filter:$scope.search | orderBy: ['Data','Nome']">
+            <td style="cursor: pointer;" ng-click="calendario.ListManagerService.Toggle(item,calendario.calendarioSelecionados)">
+              <p>
+                <i class="fa" ng-class="calendario.ListManagerService.Exists(item,calendario.calendarioSelecionados) ? 'fa-check-square-o' : 'fa-square-o'"
+                  aria-hidden="true"></i>
+              </p>
+            </td>
+            <td>
+              <a ng-bind="item.Nome" title="Editar" ui-sref="calendarioDetails( { idCalendario: item.Id })" style="cursor: pointer;"></a>
+            </td>
+            <td>
+              <p ng-bind="item.Data | date : 'dd/MM/yyyy'"></p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    <!--table-responsive-->
+  </div>
+  <!--col-xs-12-->
+</div>
+<!--row-->

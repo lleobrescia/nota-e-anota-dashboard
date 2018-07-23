@@ -1,0 +1,89 @@
+<form name="adicionarForm">
+  <div class="row">
+    <div class="col-xs-12">
+      <h1 class="page-header">
+        Comunicação
+      </h1>
+    </div>
+    <!--col-xs-12-->
+  </div>
+  <!--row-->
+
+  <div class="row">
+    
+      <div class="col-sm-6 col-md-4">
+        <div class="form-group">
+          <label for="assunto">Assunto</label>
+          <input type="text" name="assunto" class="form-control" ng-model="comunicacao.dado.Assunto" required>
+        </div>
+        <!--form-group-->
+      </div>
+      <!--col-md-4-->
+      <div class="col-sm-6 col-md-4" ng-init="$scope.opened = false">
+        <div class="form-group">
+          <label for="data">Data de Recebimento</label>
+          <p class="input-group">
+            <input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model="comunicacao.dado.Data" ng-required="true"
+              is-open="$scope.opened" close-text="Fechar" current-text="Hoje" clear-text="Limpar" ng-click="$scope.opened = true" required>
+            <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="$scope.opened = true"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+          </p>
+        </div>
+        <!--form-group-->
+      </div>
+      <!--col-md-4-->
+      <div class="col-md-4">
+        <div class="form-group" style="padding-top: 23px;    line-height: 33px;">
+          <label for="autorizacaoo">Requer Autorização?</label>
+          <div class="btn-group btn-switch pull-right">
+            <label class="btn btn-info" ng-model="comunicacao.dado.Tag" uib-btn-radio="'C'">Não</label>
+            <label class="btn btn-info" ng-model="comunicacao.dado.Tag" uib-btn-radio="'A'">Sim</label>
+          </div>
+          <!--btn-group-->
+        </div>
+        <!--form-group-->
+        <div class="clearfix"></div>
+      </div>
+      <!--col-md-4-->
+
+      <div class="col-sm-6 col-sm-offset-3">
+        <div class="form-group" style="padding-top: 23px;line-height: 33px;">
+          <label for="autorizacaoo">Turmas</label>
+          <input type="text" class="form-control" name="Buscar" placeholder="Buscar por Turma" ng-model="$scope.busca" style="margin-bottom:26px">
+
+          <table class="table table-striped">
+            <tbody>
+              <tr ng-repeat="turma in comunicacao.turmas | filter:$scope.busca | orderBy: 'Nome'" style="vertical-align: middle;text-align: center;    cursor: pointer;"
+                ng-click="comunicacao.ListManagerService.Toggle(turma,comunicacao.turmasSelecionadas)">
+                <td style="font-size: 1.6em;">
+                  <i class="fa" ng-class="comunicacao.ListManagerService.Exists(turma,comunicacao.turmasSelecionadas) ? 'fa-check-square-o' : 'fa-square-o'"
+                    aria-hidden="true"></i>
+                </td>
+                <td>
+                  <p style="margin-bottom:0" ng-bind="turma.Nome"></p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!--form-group-->
+      </div>
+      <!--col-xs-12-->
+
+      <div class="col-xs-12">
+        <div class="form-group">
+          <label for="msg">Mensagem</label>
+          <textarea name="msg" class="form-control" rows="5" ng-model="comunicacao.dado.Msg" ng-required="true" required></textarea>
+        </div>
+        <!--form-group-->
+
+        <button class="btn btn-outline btn-info pull-right" type="button" ng-click="comunicacao.Enviar()" title="Enviar" ng-disabled="adicionarForm.$invalid">
+          Enviar
+          <i class="fa fa-paper-plane" aria-hidden="true"></i>
+        </button>
+      </div>
+      <!--col-xs-12-->
+  </div>
+  <!--row-->
+</form>

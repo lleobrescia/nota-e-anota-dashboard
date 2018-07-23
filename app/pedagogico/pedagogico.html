@@ -1,0 +1,108 @@
+<form name="adicionarForm">
+  <div class="row prof-hearder">
+    <div class="col-xs-12">
+      <div class="form-group input-group input-title">
+        <label><a ui-sref="pedagogico" rel="prev" title="Voltar">Pedagógico</a></label>
+        <input type="text" class="form-control" name="nome" placeholder="Nome da Avaliação" ng-model="pedagogico.dado.Nome" ng-if="!pedagogico.requestAvaliacoes.Id"
+          required>
+        <h1 class="page-header" ng-bind="pedagogico.dado.Nome" ng-if="pedagogico.requestAvaliacoes.Id"></h1>
+        <span class="input-group-btn">
+				<button class="btn btn-outline btn-primary" type="button" title="Adicionar Avaliação" ng-click="pedagogico.Adicionar()" ng-if="!pedagogico.requestAvaliacoes.Id" ng-disabled="adicionarForm.$invalid">
+					Adicionar
+				</button>
+			</span>
+      </div>
+      <!--form-group-->
+    </div>
+    <!--col xs 12-->
+  </div>
+  <!--row-->
+
+  <div class="row">
+    <div class="col-sm-4" ng-if="pedagogico.requestAvaliacoes.Id">
+      <div class="form-group">
+        <label for="cadastro">Data de Cadastro</label>
+        <p class="form-control-static" ng-bind="pedagogico.dado.DataCadastro"></p>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="form-group">
+        <label for="turma">Turma</label>
+        <p class="form-control-static" ng-bind="pedagogico.turma.Nome"></p>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="form-group">
+        <label for="grupo">Sub Grupo Etário</label>
+        <p class="form-control-static" ng-bind="pedagogico.nomeGrupoEtario" ng-if="pedagogico.requestAvaliacoes.Id"></p>
+        <select class="form-control" name="grupo" ng-model="pedagogico.dado.Id_SubGrupoEtario" ng-if="!pedagogico.requestAvaliacoes.Id"
+          required>
+        <option value="{{grupo.Codigo}}" ng-repeat="grupo in pedagogico.grupoEtario" ng-bind="grupo.Descricao"></option>
+      </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="form-group">
+        <label for="descricao">Descrição</label>
+        <p class="form-control-static" ng-bind="pedagogico.dado.Descricao" ng-if="pedagogico.requestAvaliacoes.Id"></p>
+        <textarea class="form-control" name="descricao" rows="4" ng-model="pedagogico.dado.Descricao" ng-if="!pedagogico.requestAvaliacoes.Id"
+          required></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" ng-if="pedagogico.dado.Id_SubGrupoEtario && pedagogico.dado.Questionario.length === 0">
+    <div class="col-xs-12">
+      <h2 class="page-header">
+        Campo de Experiência
+      </h2>
+    </div>
+
+    <div class="col-xs-12" ng-repeat="experiencia in pedagogico.camposExperiencia">
+      <h4 class="page-header" ng-bind="experiencia.Descricao"></h4>
+
+      <section class="table-responsive">
+        <table class="table table-striped">
+          <tbody>
+            <tr ng-repeat="objetivo in pedagogico.objetivoAprendizagem | filter: { CodigoCampoExperiencia: experiencia.Codigo, CodigoSubGrupoEtario:pedagogico.dado.Id_SubGrupoEtario} | orderBy: 'Descricao'"
+              ng-click="pedagogico.ToggleObjetivo(experiencia.Codigo,objetivo.Codigo); objetivo.selected = !objetivo.selected"
+              style="cursor:pointer">
+              <td>
+                <p>
+                  <i class="fa" ng-class="objetivo.selected ? 'fa-check-square-o' : 'fa-square-o'" aria-hidden="true"></i>
+                </p>
+              </td>
+              <td>
+                <p ng-bind="objetivo.Descricao"></p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <!--table-responsive-->
+    </div>
+  </div>
+
+  <div class="row" ng-repeat="questionario in pedagogico.dado.Questionario" ng-if="pedagogico.dado.Questionario.length > 0">
+    <div class="col-xs-12">
+      <h4 class="page-header" ng-bind="pedagogico.GetNomeCampoExperiencia(questionario.CampoExperiencia)"></h4>
+      <section class="table-responsive">
+        <table class="table table-striped">
+          <tbody>
+            <tr ng-repeat="objetivo in questionario.ObjetivoAprendizagem">
+              <td>
+                <p ng-bind="pedagogico.GetNomeObjetivo(objetivo)"></p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <!--table-responsive-->
+    </div>
+    <!--col-xs-12-->
+  </div>
+  <!--row-->
+</form>

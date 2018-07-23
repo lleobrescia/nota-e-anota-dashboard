@@ -1,0 +1,72 @@
+<div class="row">
+  <div class="col-xs-12">
+    <div class="form-group" style="margin-bottom: -22px;cursor:pointer" ng-if="pedagogico.requestAvaliacoes.Id_Turma" ng-click="pedagogico.CancelarSelecao()">
+      <label style="cursor:pointer">Lista Turmas</label>
+    </div>
+    <h1 class="page-header">
+      Pedagógico
+      <a class="btn btn-outline btn-primary" title="Adicionar Avaliação" ui-sref="pedagogicoAdicionar( { idTurma: pedagogico.requestAvaliacoes.Id_Turma })"
+        ng-if="pedagogico.requestAvaliacoes.Id_Turma">
+        <i class="fa fa-plus" aria-hidden="true"></i>
+      </a>
+      <div class="header-search" ng-if="!pedagogico.requestAvaliacoes.Id_Turma">
+        <input type="text" name="search" class="form-control" placeholder="Buscar" ng-model="$scope.search">
+      </div>
+      <!--header-search-->
+    </h1>
+  </div>
+  <!--col-xs-12-->
+</div>
+<!--row-->
+
+<div class="row" ng-if="!pedagogico.requestAvaliacoes.Id_Turma">
+  <div class="col-xs-12">
+    <p>Selecione a turma para visualizar as informações sobre as avaliações</p>
+    <section class="table-responsive">
+      <table class="table table-striped turmas-lista">
+        <tbody>
+          <tr ng-repeat="turma in pedagogico.turmas | filter:$scope.search | orderBy: ['Nome','Ano']" style="cursor:pointer" ng-click="pedagogico.GetAvaliacoes(turma.Id);">
+            <td class="text-center">
+              <h3 ng-bind="turma.Nome"></h3>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    <!--table-responsive-->
+  </div>
+  <!--col-xs-12-->
+</div>
+<!--row-->
+
+<div class="row" ng-if="pedagogico.requestAvaliacoes.Id_Turma">
+  <div class="col-xs-12">
+    <section class="table-responsive">
+      <table class="table table-striped turmas-lista">
+        <tbody>
+          <thead>
+            <tr>
+              <th>
+                <p>Avaliação</p>
+              </th>
+              <th>
+                <p>Data</p>
+              </th>
+            </tr>
+          </thead>
+          <tr ng-repeat="avalicao in pedagogico.avaliacoes | orderBy: ['Nome','DataCadastro']" style="cursor:pointer" ng-click="pedagogico.GoToAvaliacao(avalicao.Id)">
+            <td>
+              <h3 ng-bind="avalicao.Nome"></h3>
+            </td>
+            <td>
+              <h3 ng-bind="avalicao.DataCadastro"></h3>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    <!--table-responsive-->
+  </div>
+  <!--col-xs-12-->
+</div>
+<!--row-->

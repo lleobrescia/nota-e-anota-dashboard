@@ -1,0 +1,79 @@
+<form name="adicionarForm">
+  <div class="row prof-hearder">
+    <div class="col-xs-12">
+      <div class="form-group input-group input-title">
+        <label><a ui-sref="calendario" rel="prev" title="Voltar">Calendário</a></label>
+        <input type="text" class="form-control" name="nome" placeholder="Nome do Item" ng-model="item.dado.Nome" ng-if="!item.dado.Id || item.edition" required>
+        <h1 class="page-header" ng-bind="item.dado.Nome" ng-if="item.dado.Id && !item.edition"></h1>
+        <span class="input-group-btn">
+				<button class="btn btn-outline btn-primary" type="button" title="Adicionar Avaliação" ng-click="item.Adicionar()" ng-if="!item.dado.Id" ng-disabled="adicionarForm.$invalid">
+					Adicionar
+				</button>
+        <div ng-if="item.dado.Id && item.edition">  
+          <button class="btn btn-outline btn-primary" type="button" ng-click="item.Atualizar()" title="Salvar Alterações" ng-disabled="adicionarForm.$invalid">
+            Salvar
+          </button>
+          <button class="btn btn-outline btn-danger" type="button" ng-click="item.Cancelar()" title="Cancelar Alterações">
+            <i class="fa fa-times" aria-hidden="true"></i>
+          </button>
+        </div>
+        <button class="btn btn-outline btn-primary" type="button" ng-click="item.edition = true" title="Editar Informações" ng-if="item.dado.Id && !item.edition">
+					<i class="fa fa-pencil" aria-hidden="true"></i>
+				</button>
+			</span>
+      </div>
+      <!--form-group-->
+    </div>
+    <!--col xs 12-->
+  </div>
+  <!--row-->
+
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label for="data">Data</label>
+        <p class="input-group" ng-if="!item.dado.Id || item.edition">
+          <input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model="item.dado.Data" ng-required="true" is-open="$scope.opened"
+            close-text="Fechar" current-text="Hoje" clear-text="Limpar" ng-click="$scope.opened = true" required>
+          <span class="input-group-btn">
+          <button type="button" class="btn btn-default" ng-click="$scope.opened = true"><i class="glyphicon glyphicon-calendar"></i></button>
+        </span>
+        </p>
+        <p class="form-control-static" ng-bind="item.dado.Data | date : 'dd/MM/yyyy'" ng-if="item.dado.Id && !item.edition"></p>
+      </div>
+      <!--form-group-->
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group" style="padding-top: 23px;line-height: 33px;">
+        <label for="autorizacaoo">Requer Autorização?</label>
+        <div class="btn-group btn-switch pull-right" ng-if="!item.dado.Id || item.edition">
+          <label class="btn btn-info" ng-model="item.dado.Tag" uib-btn-radio="'C'">Não</label>
+          <label class="btn btn-info" ng-model="item.dado.Tag" uib-btn-radio="'A'">Sim</label>
+        </div>
+        <!--btn-group-->
+        <p class="form-control-static" ng-if="item.dado.Tag == 'C' && !item.edition && item.dado.Id ">Não</p>
+        <p class="form-control-static" ng-if="item.dado.Tag == 'A' && !item.edition && item.dado.Id ">Sim</p>
+        <div class="clearfix"></div>
+      </div>
+      <!--form-group-->
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label for="descricao">Descrição</label>
+        <p class="form-control-static" ng-bind="item.dado.Descricao" ng-if="item.dado.Id && !item.edition"></p>
+        <textarea name="descricao" rows="4" class="form-control" ng-model="item.dado.Descricao" ng-if="!item.dado.Id || item.edition" required></textarea>
+      </div>
+    </div>
+
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label for="obs">Observação</label>
+        <p class="form-control-static" ng-bind="item.dado.Obs" ng-if="item.dado.Id && !item.edition"></p>
+        <textarea name="obs" rows="4" class="form-control" ng-model="item.dado.Obs" ng-if="!item.dado.Id || item.edition" required></textarea>
+      </div>
+    </div>
+  </div>
+</form>

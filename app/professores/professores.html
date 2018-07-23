@@ -1,0 +1,50 @@
+<div class="row">
+  <div class="col-xs-12">
+    <h1 class="page-header">
+      Professores
+      <a class="btn btn-outline btn-primary" title="Adicionar Professor" ui-sref="professoresAdicionar">
+        <i class="fa fa-user-plus" aria-hidden="true"></i>
+      </a>
+      <div class="header-search">
+        <input type="text" name="search" class="form-control" placeholder="Buscar" ng-model="$scope.search.Nome">
+      </div>
+      <!--header-search-->
+    </h1>
+  </div>
+  <!--col-xs-12-->
+</div>
+<!--row-->
+
+<div class="row">
+  <div class="col-xs-12">
+    <section class="table-responsive">
+      <table class="table table-striped prof-lista">
+        <tbody>
+          <tr ng-repeat="prof in profs.listaProf | filter:$scope.search | orderBy: 'Nome'" ng-click="profs.GoToProf(prof.Id)">
+            <td>
+              <div ng-if="prof.LinkFoto" class="img-thumbnail img-circle thumbnail-box" ng-style="{'background-image':'url({{prof.LinkFoto}})'}"></div>
+
+              <div ng-if="!prof.LinkFoto" class="thumbnail-user img-thumbnail img-circle">
+                <i class="fa fa-user" aria-hidden="true"></i>
+              </div>
+            </td>
+            <td>
+              <h3>{{prof.Nome}}</h3>
+            </td>
+            <td>
+              <h3>{{prof.TelefoneResponsavelEmergencia}}</h3>
+            </td>
+            <td>
+              <div class="prof-turmas">
+                <p ng-repeat="turma in prof.turmas" ng-bind="turma.Nome"></p>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    <!--table-responsive-->
+  </div>
+  <!--col-xs-12-->
+</div>
+<!--row-->

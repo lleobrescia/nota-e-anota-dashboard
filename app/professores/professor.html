@@ -1,0 +1,61 @@
+<form name="adicionarForm">
+  <div class="row prof-hearder">
+    <div class="col-xs-12">
+      <div class="form-group input-group input-title">
+        <label><a ui-sref="professores" rel="prev" title="Voltar">Professores</a></label>
+        <input type="text" class="form-control" name="nome" placeholder="Nome do(a) Professor(a)" ng-model="prof.dado.Nome" ng-show="!prof.idProf || prof.enableEdition" required>
+        <h1 class="page-header" ng-bind="prof.dado.Nome" ng-show="prof.idProf && !prof.enableEdition"></h1>
+        <span class="input-group-btn">
+				<button class="btn btn-outline btn-primary" type="button" ng-click="prof.AdicionarProf()" title="Adicionar Professor" ng-if="!prof.idProf" ng-disabled="adicionarForm.$invalid">
+					Adicionar
+				</button>
+				<button class="btn btn-outline btn-primary" type="button" ng-click="prof.SalvarEdicao();prof.enableEdition = false" title="Salvar Alterações" ng-show="prof.idProf && prof.enableEdition" ng-disabled="adicionarForm.$invalid">
+					Salvar
+				</button>
+				<button class="btn btn-outline btn-danger" type="button" ng-click="prof.CancelarEdicao();prof.enableEdition = false" title="Cancelar Alterações" ng-show="prof.idProf && prof.enableEdition">
+					<i class="fa fa-times" aria-hidden="true"></i>
+				</button>
+        <button class="btn btn-outline btn-primary" type="button" ng-click="prof.enableEdition = true" title="Editar Informações" ng-if="prof.idProf && !prof.enableEdition">
+					<i class="fa fa-pencil" aria-hidden="true"></i>
+				</button>
+			</span>
+      </div>
+      <!--form-group-->
+    </div>
+    <!--col xs 12-->
+  </div>
+  <!--row-->
+
+  <div class="row">
+    <form name="adicionarForm">
+      <div ng-class="prof.idProf ?'col-sm-6' : 'col-sm-4' ">
+        <div class="form-group">
+          <label for="email">E-mail</label>
+          <input type="email" name="email" class="form-control" ng-model="prof.dado.Email" ng-show="!prof.idProf || prof.enableEdition" required>
+          <p class="form-control-static" ng-bind="prof.dado.Email" ng-show="prof.idProf && !prof.enableEdition"></p>
+        </div>
+        <!--form-group-->
+      </div>
+      <!--col-sm-6-->
+      <div class="col-sm-4" ng-if="!prof.idProf">
+        <div class="form-group">
+          <label for="senha">Senha</label>
+          <input type="text" name="senha" class="form-control" ng-model="prof.dado.Senha" required>
+        </div>
+        <!--form-group-->
+      </div>
+      <!--col-sm-4-->
+      <div ng-class="prof.idProf ?'col-sm-6' : 'col-sm-4' ">
+        <div class="form-group">
+          <label for="cpf">CPF</label>
+          <input type="text" name="cpf" class="form-control" ng-model="prof.dado.Cpf" ng-show="!prof.idProf || prof.enableEdition" mask="999.999.999-99">
+          <p class="form-control-static" ng-bind="prof.dado.Cpf" ng-show="prof.idProf && !prof.enableEdition"></p>
+        </div>
+        <!--form-group-->
+      </div>
+      <!--col-sm-6-->
+    </form>
+    <!--adicionarForm-->
+  </div>
+  <!--row-->
+</form>

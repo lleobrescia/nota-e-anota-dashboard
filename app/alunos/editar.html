@@ -1,0 +1,68 @@
+<form name="adicionarForm">
+	<div class="row aluno-hearder">
+		<div class="col-xs-12">
+			<div class="form-group input-group input-title">
+				<label><a ui-sref="alunos" rel="prev" title="Voltar">Alunos</a></label>
+				<input type="text" class="form-control" name="nome" placeholder="Nome do(a) Aluno(a)" ng-model="aluno.dadoAdicionar.Nome"
+					required>
+				<span class="input-group-btn">
+				<button class="btn btn-outline btn-primary" type="button" ng-click="aluno.Adicionar()" title="Adicionar Aluno" ng-if="!aluno.request.ObjectID" ng-disabled="adicionarForm.$invalid">
+					Adicionar
+				</button>
+				<button class="btn btn-outline btn-primary" type="button" ng-click="aluno.SalvarEdicao();aluno.edition = false" title="Salvar Alterações" ng-show="aluno.request.ObjectID" ng-disabled="adicionarForm.$invalid">
+					Salvar
+				</button>
+				<button class="btn btn-outline btn-danger" type="button" ng-click="aluno.Cancelar();aluno.edition = false" title="Cancelar Alterações" ng-show="aluno.request.ObjectID">
+					<i class="fa fa-times" aria-hidden="true"></i>
+				</button>
+			</span>
+			</div>
+			<!--form-group-->
+		</div>
+		<!--col xs 12-->
+	</div>
+	<!--row-->
+
+	<div class="row">
+		<div class="col-xs-12">
+			<h2 class="page-header">
+				Dados da matrícula
+			</h2>
+		</div>
+		<!--col-xs-12-->
+
+		<div class="col-sm-6 col-md-3">
+			<div class="form-group">
+				<label for="nascimento">Data de Nascimento</label>
+				<input type="text" name="nascimento" class="form-control" ng-model="aluno.dadoAdicionar.Data_Nascimento" mask="39/19/9999"
+					required>
+			</div>
+			<!--form-group-->
+		</div>
+		<!--col-sm-3-->
+		<div class="col-sm-6 col-md-4">
+			<div class="form-group">
+				<label for="email">E-mail do responsável</label>
+				<input type="email" name="email" class="form-control" ng-model="aluno.dadoAdicionar.Email_Responsavel" required>
+			</div>
+		</div>
+		<!--col-sm-4-->
+		<div class="col-sm-6 col-md-2">
+			<div class="form-group">
+				<label for="genero">Gênero</label>
+				<select name="genero" class="form-control" ng-model="aluno.dadoAdicionar.Sexo" required>
+					<option value="F">Feminino</option>
+					<option value="M">Masculino</option>
+				</select>
+			</div>
+		</div>
+		<div class="col-sm-6 col-md-3">
+			<div class="form-group">
+				<label for="matricula">Matrícula</label>
+				<input type="text" name="matricula" class="form-control" ng-model="aluno.dadoAdicionar.Matricula" required>
+			</div>
+		</div>
+	</div>
+	<!--row-->
+</form>
+<!--adicionarForm-->

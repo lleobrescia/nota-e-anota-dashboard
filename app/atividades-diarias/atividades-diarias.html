@@ -1,0 +1,86 @@
+<div class="row">
+  <div class="col-xs-12">
+    <div class="form-group" style="margin-bottom: -22px;" ng-if="atividades.requestAtividades.Id_Turma" ng-click="atividades.CancelarSelecao()">
+      <label style="cursor:pointer">Lista Turmas</label>
+    </div>
+    <h1 class="page-header">
+      Atividades Diárias
+      <a class="btn btn-outline btn-primary" title="Adicionar Atividade" ui-sref="atividadesAdicionar( { idTurma: atividades.requestAtividades.Id_Turma })"
+        ng-if="atividades.requestAtividades.Id_Turma">
+        <i class="fa fa-plus" aria-hidden="true"></i>
+      </a>
+       <button class="btn btn-outline btn-danger" type="button" ng-click="atividades.DeleteAtividade()" title="Apagar Atividade(s)" ng-show="atividades.atividadesSelecionadas.length > 0">
+					<i class="fa fa-times" aria-hidden="true"></i>
+      </button>
+      <div class="header-search">
+        <input type="text" name="search" class="form-control" placeholder="Buscar" ng-model="atividades.search" ng-if="!atividades.requestAtividades.Id_Turma">
+        <input type="text" name="search" class="form-control" placeholder="Buscar" ng-model="atividades.searchAtividades" ng-if="atividades.requestAtividades.Id_Turma">
+      </div>
+      <!--header-search-->
+    </h1>
+  </div>
+  <!--col-xs-12-->
+</div>
+<!--row-->
+
+<div class="row" ng-if="!atividades.requestAtividades.Id_Turma">
+  <div class="col-xs-12">
+    <p>Selecione a turma para visualizar as informações sobre as atividades</p>
+    <section class="table-responsive">
+      <table class="table table-striped turmas-lista">
+        <tbody>
+          <tr ng-repeat="turma in atividades.turmas | filter:atividades.search | orderBy: 'Nome'" style="cursor:pointer" ng-click="atividades.GetAtividades(turma.Id);">
+            <td class="text-center">
+              <h3 ng-bind="turma.Nome"></h3>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    <!--table-responsive-->
+  </div>
+  <!--col-xs-12-->
+</div>
+<!--row-->
+
+<div class="row" ng-if="atividades.requestAtividades.Id_Turma">
+  <div class="col-xs-12">
+    <section class="table-responsive">
+      <table class="table table-striped turmas-lista">
+        <tbody>
+          <thead>
+            <tr>
+              <th>
+                <p ng-click="atividades.ListManagerService.ToggleAll(atividades.atividadesSelecionadas,atividades.atividades)" style="cursor: pointer;">
+                  <i class="fa" ng-class="
+                 {  'fa-square-o' : atividades.atividadesSelecionadas.length === 0,
+                   'fa-minus-square-o' : atividades.ListManagerService.IsIndeterminate(atividades.atividadesSelecionadas,atividades.atividades),
+                   'fa-check-square-o' : atividades.atividadesSelecionadas.length === atividades.atividades.length}
+                  "></i>
+                </p>
+              </th>
+              <th>
+                <p>Atividade</p>
+              </th>
+            </tr>
+          </thead>
+          <tr ng-repeat="atividade in atividades.atividades | filter:{'Nome':atividades.searchAtividades} | orderBy: 'Nome'">
+
+            <td style="cursor: pointer;vertical-align: middle;" ng-click="atividades.ListManagerService.Toggle(atividade,atividades.atividadesSelecionadas)">
+              <p>
+                <i class="fa" ng-class="atividades.ListManagerService.Exists(atividade,atividades.atividadesSelecionadas) ? 'fa-check-square-o' : 'fa-square-o'"
+                  aria-hidden="true"></i>
+              </p>
+            </td>
+            <td style="cursor:pointer;vertical-align: middle;" ng-click="atividades.GoAtividade(atividade.Id)">
+              <h3 ng-bind="atividade.Nome"></h3>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    <!--table-responsive-->
+  </div>
+  <!--col-xs-12-->
+</div>
+<!--row-->

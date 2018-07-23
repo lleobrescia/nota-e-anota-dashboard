@@ -1,0 +1,67 @@
+<nav class="navbar navbar-default navbar-static-top" ng-controller="HeaderController as Header">
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+		</button>
+		<a class="navbar-brand" rel="nofolow" ng-bind="Header.nomeEscola"></a>
+	</div>
+	<!--navbar-header-->
+	<ul class="nav navbar-top-links navbar-right">
+		<li>
+			<a ui-sref="usuarioDetails( { idUsuario: Header.idUser })" ng-bind="Header.nomeUser"></a>
+		</li>
+		<li>
+			<a ng-click="Header.Sair()" style="cursor:pointer">
+        sair
+			</a>
+		</li>
+	</ul>
+	<!--navbar-top-links-->
+	<div class="navbar-default sidebar" role="navigation">
+		<div class="sidebar-nav navbar-collapse collapse" aria-expanded="false">
+			<ul class="nav in">
+				<li>
+					<a ui-sref="alunos" ng-class="{ active: Header.IsActive('alunos')}"> Alunos</a>
+				</li>
+				<li>
+					<a ui-sref="turmas" ng-class="{ active: Header.IsActive('turmas')}"> Turmas</a>
+				</li>
+				<li>
+					<a ui-sref="professores" ng-class="{ active: Header.IsActive('professores')}"> Professores</a>
+				</li>
+				<li>
+					<a ui-sref="pedagogico" ng-class="{ active: Header.IsActive('pedagogico')}"> Pedagógico</a>
+				</li>
+				<li>
+					<a ui-sref="cardapio" ng-class="{ active: Header.IsActive('cardapio')}"> Cardápio</a>
+				</li>
+				<li>
+					<a ui-sref="calendario" ng-class="{ active: Header.IsActive('calendario')}"> Calendário</a>
+				</li>
+				<li>
+					<a ui-sref="atividades" ng-class="{ active: Header.IsActive('atividades-diarias')}"> Atividades Diárias</a>
+				</li>
+				<li>
+					<a ui-sref="comunicacao" ng-class="{ active: Header.IsActive('comunicacao')}"> Comunicação</a>
+				</li>
+				<li>
+					<a ui-sref="usuarios" ng-class="{ active: Header.IsActive('usuarios')}"> Usuários</a>
+				</li>
+				<li>
+					<a ui-sref="escola" ng-class="{ active: Header.IsActive('dados-da-escola')}"> Dados da Escola</a>
+				</li>
+			</ul>
+		</div>
+		<!--sidebar-nav-->
+	</div>
+	<!--sidebar-->
+</nav>
+<div class="desenvolvedor hidden-xs">
+	<img src="image/nota-anota.png" alt="Nota e Anota">
+
+	<a href="http://pixla.com.br/" target="_blank" title="Pixla">Pixla | 2016</a>
+</div>
+<!--desenvolvedor-->

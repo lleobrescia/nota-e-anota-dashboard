@@ -1,0 +1,154 @@
+<form name="adicionarForm">
+  <div class="row prof-hearder">
+    <div class="col-xs-12">
+      <div class="form-group input-group input-title">
+        <label>Dados da Escola</label>
+        <input type="text" class="form-control" name="nome" placeholder="Nome da Escola" ng-model="escola.dado.nome" ng-if="escola.edition"
+          required>
+        <h1 class="page-header" ng-bind="escola.dado.nome" ng-if="!escola.edition"></h1>
+        <span class="input-group-btn">
+        <div ng-if="escola.edition"> 
+          <button class="btn btn-outline btn-primary" type="button" ng-click="escola.Atualizar()" title="Salvar Alterações" ng-disabled="adicionarForm.$invalid">
+            Salvar
+          </button>
+          <button class="btn btn-outline btn-danger" type="button" ng-click="escola.CancelarEdicao()" title="Cancelar Alterações">
+            <i class="fa fa-times" aria-hidden="true"></i>
+          </button>
+        </div>
+        <button class="btn btn-outline btn-primary" type="button" ng-click="escola.edition = true" title="Editar Informações" ng-if="!escola.edition">
+					<i class="fa fa-pencil" aria-hidden="true"></i>
+				</button>
+			</span>
+      </div>
+      <!--form-group-->
+    </div>
+    <!--col xs 12-->
+  </div>
+  <!--row-->
+
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="upload-foto" ng-hide="escola.img || escola.recortou" style="margin-bottom: 30px;">
+        <input id="img" type="file" accept="image/*">
+        <i class="fa fa-camera" aria-hidden="true"></i>
+      </div>
+      <div class="cropArea" ng-show="escola.img && !escola.recortou">
+        <img-crop image="escola.img" result-image="escola.imgCortada" area-type="square" result-image-format="'image/jpeg'"></img-crop>
+      </div>
+      <div ng-if="escola.img && !escola.recortou">
+        <button class="btn btn-outline btn-primary" type="button" title="Recortar Imagem" ng-click="escola.recortou = true;escola.Recortar()"
+          style="margin: 20px 0 40px;">
+        Recortar
+      </button>
+        <button class="btn btn-outline btn-danger" type="button" title="Recortar Imagem" ng-click="escola.recortou = true;escola.CancelarRecorte()"
+          style="margin: 20px 0 40px;">
+        Cancelar
+      </button>
+      </div>
+
+      <img ng-src="{{escola.imgCortada}}" style="margin: 30px auto;display: block;cursor: pointer;" ng-click="escola.recortou = false; escola.img = null"
+        ng-show="escola.recortou">
+    </div>
+  </div>
+  <style>
+    .cropArea {
+      background: #E4E4E4;
+      overflow: hidden;
+      width: 100%;
+      padding: 5px;
+      height: 500px;
+    }
+  </style>
+  <div class="row">
+    <div class="col-sm-5 col-md-4">
+      <div class="form-group">
+        <label for="cep">CEP</label>
+        <input type="text" name="cep" class="form-control" ng-model="escola.dado.endereco.cep" mask="99.999-999" ng-if="escola.edition"
+          required>
+        <p class="form-control-static" ng-bind="escola.dado.endereco.cep" ng-if="!escola.edition"></p>
+      </div>
+    </div>
+    <div class="col-sm-5 col-md-4">
+      <div class="form-group">
+        <label for="logradouro">Logradouro</label>
+        <input type="text" name="logradouro" class="form-control" ng-model="escola.dado.endereco.logradouro" ng-if="escola.edition"
+          required>
+        <p class="form-control-static" ng-bind="escola.dado.endereco.logradouro" ng-if="!escola.edition"></p>
+      </div>
+    </div>
+    <div class="col-sm-2 col-md-4">
+      <div class="form-group">
+        <label for="número">Número</label>
+        <input type="text" name="numero" class="form-control" ng-model="escola.dado.endereco.numero" ng-if="escola.edition" required>
+        <p class="form-control-static" ng-bind="escola.dado.endereco.numero" ng-if="!escola.edition"></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-5 col-md-4">
+      <div class="form-group">
+        <label for="bairro">Bairro</label>
+        <input type="text" name="bairro" class="form-control" ng-model="escola.dado.endereco.bairro" ng-if="escola.edition" required>
+        <p class="form-control-static" ng-bind="escola.dado.endereco.bairro" ng-if="!escola.edition"></p>
+      </div>
+    </div>
+    <div class="col-sm-5 col-md-4">
+      <div class="form-group">
+        <label for="cidade">Cidade</label>
+        <input type="text" name="cidade" class="form-control" ng-model="escola.dado.endereco.cidade" ng-if="escola.edition" required>
+        <p class="form-control-static" ng-bind="escola.dado.endereco.cidade" ng-if="!escola.edition"></p>
+      </div>
+    </div>
+    <div class="col-sm-2 col-md-4">
+      <div class="form-group">
+        <label for="estado">Estado</label>
+        <input type="text" name="estado" class="form-control" ng-model="escola.dado.endereco.estado" ng-if="escola.edition" required>
+        <p class="form-control-static" ng-bind="escola.dado.endereco.estado" ng-if="!escola.edition"></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6 col-md-3">
+      <div class="form-group">
+        <label for="cnpj">CNPJ</label>
+        <input type="text" name="cnpj" class="form-control" ng-model="escola.dado.cnpj" mask="99.999.999/9999-99" ng-if="escola.edition"
+          required>
+        <p class="form-control-static" ng-bind="escola.dado.cnpj" ng-if="!escola.edition"></p>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-3">
+      <div class="form-group">
+        <label for="site">Site</label>
+        <input type="url" name="site" class="form-control" ng-model="escola.dado.site" http-prefix ng-if="escola.edition">
+        <p class="form-control-static" ng-bind="escola.dado.site" ng-if="!escola.edition"></p>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-3">
+      <div class="form-group">
+        <label for="telefone">Telefone</label>
+        <input type="text" name="telefone" class="form-control" ng-model="escola.dado.telefone" mask="(99) 9?9999-9999" ng-if="escola.edition"
+          required>
+        <p class="form-control-static" ng-bind="escola.dado.telefone" ng-if="!escola.edition"></p>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-3">
+      <div class="form-group">
+        <label for="email">E-mail</label>
+        <input type="email" name="email" class="form-control" ng-model="escola.dado.email" ng-if="escola.edition">
+        <p class="form-control-static" ng-bind="escola.dado.email" ng-if="!escola.edition"></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="form-group">
+        <label for="info">Informações Adicionais</label>
+        <textarea rows="25" name="info" class="form-control" ng-model="escola.dado.texto_informativo" ng-if="escola.edition"></textarea>
+        <p class="form-control-static" ng-bind="escola.dado.texto_informativo" ng-if="!escola.edition"></p>
+      </div>
+    </div>
+  </div>
+</form>

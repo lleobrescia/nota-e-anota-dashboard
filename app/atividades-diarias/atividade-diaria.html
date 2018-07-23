@@ -1,0 +1,65 @@
+<form name="adicionarForm">
+  <div class="row prof-hearder">
+    <div class="col-xs-12">
+      <div class="form-group input-group input-title">
+        <label><a ui-sref="atividades" rel="prev" title="Voltar">Atividades Diárias</a></label>
+        <input type="text" class="form-control" name="nome" placeholder="Nome da Atividade" ng-model="atividade.dado.Nome" ng-if="!atividade.id || atividade.edition"
+          required>
+        <h1 class="page-header" ng-bind="atividade.dado.Nome" ng-if="atividade.id && !atividade.edition"></h1>
+        <span class="input-group-btn">
+				<button class="btn btn-outline btn-primary" type="button" title="Adicionar Atividade" ng-click="atividade.Adicionar()" ng-if="!atividade.id" ng-disabled="adicionarForm.$invalid">
+					Adicionar
+				</button>
+        <div ng-if="atividade.id && atividade.edition"> 
+          <button class="btn btn-outline btn-primary" type="button" ng-click="atividade.Atualizar()" title="Salvar Alterações" ng-disabled="adicionarForm.$invalid">
+            Salvar
+          </button>
+          <button class="btn btn-outline btn-danger" type="button" ng-click="atividade.Cancelar()" title="Cancelar Alterações">
+            <i class="fa fa-times" aria-hidden="true"></i>
+          </button>
+        </div>
+        <button class="btn btn-outline btn-primary" type="button" ng-click="atividade.edition = true" title="Editar Informações" ng-if="id && !atividade.edition">
+					<i class="fa fa-pencil" aria-hidden="true"></i>
+				</button>
+			</span>
+      </div>
+      <!--form-group-->
+    </div>
+    <!--col xs 12-->
+  </div>
+  <!--row-->
+
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="upload-foto" ng-hide="atividade.imgTurma || atividade.recortou">
+        <input id="img" type="file" accept="image/*">
+        <i class="fa fa-camera" aria-hidden="true"></i>
+      </div>
+      <div class="cropArea" ng-show="atividade.imgTurma && !atividade.recortou">
+        <img-crop image="atividade.imgTurma" result-image="atividade.imgTurmaCortada" area-type="square" result-image-format="'image/jpeg'"></img-crop>
+      </div>
+      <button class="btn btn-outline btn-primary" type="button" title="Recortar Imagem" ng-click="atividade.recortou = true" ng-if="atividade.imgTurma && !atividade.recortou"
+        style="margin: 20px 0 40px;">
+      Recortar
+    </button>
+      <img ng-src="{{atividade.imgTurmaCortada}}" ng-show="atividade.recortou" width="300" style="margin: auto;display: block;cursor: pointer;"
+        ng-click="atividade.recortou = false; atividade.imgTurma = null;atividade.edition = true">
+
+      <div class="form-group">
+        <label for="descricao">Descrição</label>
+        <textarea rows="5" name="descricao" class="form-control" ng-model="atividade.dado.Descricao" ng-if="!atividade.id || atividade.edition"
+          required></textarea>
+        <p class="form-control-static" ng-bind="atividade.dado.Descricao" ng-if="atividade.id && !atividade.edition"></p>
+      </div>
+    </div>
+  </div>
+</form>
+<style>
+  .cropArea {
+    background: #E4E4E4;
+    overflow: hidden;
+    width: 100%;
+    padding: 5px;
+    height: 500px;
+  }
+</style>

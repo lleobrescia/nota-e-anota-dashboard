@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<!--[if IE 7]>
+<html class="ie ie7 no-js" lang="pt-BR" ng-app="dashboard" ng-controller="MainController as Main">
+<![endif]-->
+<!--[if IE 8]>
+<html class="ie ie8 no-js" lang="pt-BR" ng-app="dashboard" ng-controller="MainController as Main">
+<![endif]-->
+<!--[if !(IE 7) & !(IE 8)]><!-->
+<html lang="pt-br" ng-app="dashboard" class="no-js" ng-controller="MainController as Main">
+<!--<![endif]-->
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="robots" content="noindex,nofallow">
+	<meta name="fragment" content="!">
+
+	<link rel="shortcut icon" type="image/png" href="image/favicon.png">
+
+	<base href="/dashboard/">
+
+	<!--CHART-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js"></script>
+	<!--ANGULAR-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
+	<!--ANGULAR LOCATE-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/i18n/angular-locale_pt-br.js"></script>
+	<!--ANGULAR UI ROUTE-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.2/angular-ui-router.min.js"></script>
+	<!--ANGULAR ANIMATE-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-animate.min.js"></script>
+	<!--ANGULAR TOUCH-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-touch/1.5.8/angular-touch.min.js"></script>
+	<!--ANGULAR CHART-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-chart.js/1.0.3/angular-chart.min.js"></script>
+	<!--NG MASK-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ngMask/3.1.1/ngMask.min.js"></script>
+	<!--TOAST-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-toastr/2.1.1/angular-toastr.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-toastr/2.1.1/angular-toastr.tpls.js"></script>
+	<!--IMAGE CROP-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ng-img-crop/0.3.2/ng-img-crop.js"></script>
+	<!--BOOSTRAP-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.2.0/ui-bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.2.0/ui-bootstrap-tpls.min.js"></script>
+
+	<title ng-bind="'Dashboard ' + $root.title">Dashboard</title>
+
+	<!--CSS SITE-->
+	<link rel="stylesheet" type="text/css" href="css/style.min.css">
+
+	<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+	<!--[if gte IE 9]
+	<style type="text/css">
+		.gradient {
+		filter: none;
+		}
+	</style>
+	<![endif]-->
+</head>
+
+<body ng-class="loginClass">
+
+	<div class="wrapper">
+		<cabecalho ng-if="!isLogin"></cabecalho>
+		<section class="page-wrapper">
+			<div ui-view></div>
+		</section>
+	</div>
+	<!--wrapper-->
+
+	<script src="js/dashboard.min.js"></script>
+
+</body>
+
+</html>
